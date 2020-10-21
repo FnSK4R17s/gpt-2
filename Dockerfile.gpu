@@ -1,4 +1,4 @@
-FROM tensorflow/tensorflow:1.12.0-gpu-py3
+FROM tensorflow/tensorflow:1.15.0-gpu-py3
 
 # nvidia-docker 1.0
 LABEL com.nvidia.volumes.needed="nvidia_driver"
@@ -13,6 +13,7 @@ ENV NVIDIA_VISIBLE_DEVICES=all \
 RUN mkdir /gpt-2
 WORKDIR /gpt-2
 ADD . /gpt-2
+RUN pip install --upgrade pip
 RUN pip3 install -r requirements.txt
 RUN python3 download_model.py 124M
 RUN python3 download_model.py 355M
